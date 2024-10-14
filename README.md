@@ -1,37 +1,101 @@
-## Customize this file after creating the new REPO and remove this lines.
-What to adjust:  
-* Add the your project or repo name direct under the logo.
-* Add a short and long desciption.
-* Add links for your final repo to report a bug or request a feature.
-* Add list of used technologies.
-* If you have, add a roadmap or remove this section.
-* Fill up the section for set up and documentation.
- * Start in this file only with documentation and link to the docs folder.
-* Add more project shields. Use [shields.io](https://shields.io/) with style `for-the-badge`.
+<div id="top"></div>
 
-## ------- end to remove -------
-<!-- add Project Logo, if existing -->
+<!-- PROJECT SHIELDS -->
 
-# repo or project name
+<!-- END OF PROJECT SHIELDS -->
 
-[![Made with love by it@M][made-with-love-shield]][itm-opensource]
-<!-- feel free to add more shields, style 'for-the-badge' -> see https://shields.io/badges -->
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="#">
+    <img src="/images/logo.png" alt="Logo" height="200">
+  </a>
 
-*Add a description from your project here.*
+<h3 align="center">MobidaM - Mobilitätsdatenplattform für München</i></h3>
+
+  <p align="center">
+    <i>Anwendung für das Management der Schnittstellen</i>
+        <br /><a href="https://github.com/it-at-m/mobidam-sst-management/issues">Fehler melden</a>
+    ·
+    <a href="https://github.com/it-at-m/mobidam-sst-management/issues">Anforderung einstellen</a>
+  </p>
+</div>
+
+<!-- ABOUT THE PROJECT -->
+
+## Über das Projekt
+
+Gesamtziel des Projektes ist die Einführung einer Mobilitätsdatenplattform zur Bereitstellung, Haltung, Visualisierung und Auswertung von Mobilitätsdaten im Kontext der Mobilitätsplanung, der Wirkungsanalyse und der Angebotssteuerung. Hierbei werden die unterschiedlichsten Daten aus verschiedenen internen oder externen Datenquellen benötigt.
+
+Dieses Projekt implementiert einen Spring-Boot Starter für gemeinsam benutzte Mobidam EAI Funktionalitäten.
+
+<p align="right">(<a href="#top">nach oben</a>)</p>
+
+### Verwendete Technologien
+
+Dieses Projekt verwendet die folgenden Technologien:
+
+-   Spring Boot
+
+<p align="right">(<a href="#top">nach oben</a>)</p>
+
+## Set up
+
+TBD: _how can i start and fly this project_
+
+<p align="right">(<a href="#top">nach oben</a>)</p>
 
 
-### Built With
+## Dokumentation
 
-The documentation project is built with technologies we use in our projects:
+<!--*what insights do you have to tell*-->
 
-* *write here the list of used technologies*
+Die Dokumentation befindet sich unter <a href="https://github.com/it-at-m/mobidam-sst-management/tree/sprint/docs">docs</a> oder https://it-at-m.github.io/mobidam-sst-management/
 
-## Roadmap
+<p align="right">(<a href="#top">nach oben</a>)</p>
 
-*if you have a ROADMAP for your project add this here*
+<!-- CONTRIBUTING -->
 
+## Beiträge
 
-See the [open issues](#) for a full list of proposed features (and known issues).
+Beiträge sind es, die die Open Source Community so wertvoll machen - zum Lernen und Erstellen sowie zur Inspiration.
+Beiträge sind **sehr willkommen**:
+
+Um Verbesserungsvorschläge einzureichen, öffne bitte ein _Issue_ mit dem _Tag_ "enhancement", erstelle einen _Fork_ des
+Repos und
+erzeuge einen _Pull Request_. Es ist natürlich auch möglich, nur ein Issue mit dem _Tag_ "enhancement" zu öffnen.
+
+Vielen Dank, dass du diesem Projekt einen _Star_ vergibst!
+
+1. Öffne ein **Issue** mit dem Tag "enhancement"
+2. Erstelle einen **Fork** des Projekts
+3. Erzeuge deinen eigenen **Feature Branch** (`git checkout -b feature/AmazingFeature`)
+4. **Commit** deine Änderungen (`git commit -m 'Add some AmazingFeature'`)
+5. **Push** in den Feature Branch (`git push origin feature/AmazingFeature`)
+6. Erstelle einen **Pull Request**
+
+Mehr dazu in der Datei [CODE_OF_CONDUCT](/CODE_OF_CONDUCT.md) .
+
+<p align="right">(<a href="#top">nach oben</a>)</p>
+
+<!-- LICENSE -->
+
+## Lizensierung
+
+Die Distribution erfolgt unter der MIT License. Mehr dazu in der Datei [LICENSE](/LICENSE).
+
+<p align="right">(<a href="#top">nach oben</a>)</p>
+
+<!-- CONTACT -->
+
+## Kontakt
+
+it@m - opensource@muenchen.de
+
+<p align="right">(<a href="#top">nach oben</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 
 ## Set up
