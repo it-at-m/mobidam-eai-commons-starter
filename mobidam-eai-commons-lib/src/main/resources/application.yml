@@ -1,0 +1,11 @@
+de.muenchen.mobidam.s3:
+  bucket-credential-config:
+    tenant-default:
+      access-key-env-var: MOBIDAM_ACCESS_KEY
+      secret-key-env-var: MOBIDAM_SECRET_KEY
+
+info:
+  application:
+    name: @project.artifactId@
+    version: @project.version@
+
