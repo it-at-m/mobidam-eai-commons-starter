@@ -1,4 +1,4 @@
-name: Integration compliance check and build test
+name: Common compliance check and build test
 
 on:
   push:

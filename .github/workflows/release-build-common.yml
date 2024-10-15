@@ -1,4 +1,4 @@
-name: Build integration release
+name: Build common release
 
 on:
   workflow_dispatch:
