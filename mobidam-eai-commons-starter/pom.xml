@@ -35,7 +35,6 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>mobidam-eai-commons-starter</name>
     <description>mobidam-eai-commons-starter</description>
-    <url/>
     <licenses>
         <license/>
     </licenses>
@@ -50,6 +49,8 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <camel.version>4.8.0</camel.version>
+        <mobidam-eai-commons-lib.version>1.0.0-SNAPSHOT</mobidam-eai-commons-lib.version>
     </properties>
     <dependencies>
         <dependency>
@@ -57,14 +58,14 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>software.amazon.awssdk</groupId>
-            <artifactId>s3</artifactId>
-            <version>2.20.160</version>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-aws2-s3</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>de.muenchen.mobidam</groupId>
             <artifactId>mobidam-eai-commons-lib</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${mobidam-eai-commons-lib.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

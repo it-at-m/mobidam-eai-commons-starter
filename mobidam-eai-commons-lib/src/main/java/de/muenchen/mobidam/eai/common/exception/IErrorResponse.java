@@ -20,14 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.muenchen.mobidam.eai.common;
+package de.muenchen.mobidam.eai.common.exception;
 
-public class S3Constants {
+import java.math.BigDecimal;
+import java.util.Date;
 
-    public static final String ERROR_RESPONSE = "errorResponse";
-    public static final String PARAMETER_BUCKET_NAME = "bucketName";
+public interface IErrorResponse {
 
-    // Headers for bucket credentials
-    public static final String ACCESS_KEY = "accessKey";
-    public static final String SECRET_KEY = "secretKey";
+    Date getTimestamp();
+
+    void setTimestamp(Date timestamp);
+
+    String getError();
+
+    void setError(String error);
+
+    BigDecimal getStatus();
+
+    void setStatus(BigDecimal status);
 }

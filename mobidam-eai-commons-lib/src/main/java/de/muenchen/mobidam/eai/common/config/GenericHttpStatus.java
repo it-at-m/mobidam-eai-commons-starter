@@ -20,21 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.muenchen.mobidam.eai.integration.configuration;
+package de.muenchen.mobidam.eai.common.config;
 
-import de.muenchen.mobidam.eai.common.config.EnvironmentReader;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
-import software.amazon.awssdk.services.s3.S3Client;
+import lombok.Getter;
 
-@ConditionalOnBean(S3Client.class)
-public class EnvironmentReaderAutoConfiguration {
+@Getter
+public enum GenericHttpStatus {
+    OK(200, "OK"), CREATED(201, "Created"), NO_CONTENT(204, "No Content"), BAD_REQUEST(400, "Bad Request"), UNAUTHORIZED(401, "Unauthorized"), FORBIDDEN(403,
+            "Forbidden"), NOT_FOUND(404, "Not Found"), INTERNAL_SERVER_ERROR(500, "Internal Server Error"), SERVICE_UNAVAILABLE(503, "Service Unavailable");
 
-    @Bean
-    @ConditionalOnMissingBean
-    public EnvironmentReader environmentReader(Environment environment) {
-        return new EnvironmentReader(environment);
+    private final int code;
+    private final String reasonPhrase;
+
+    GenericHttpStatus(int code, String reasonPhrase) {
+        this.code = code;
+        this.reasonPhrase = reasonPhrase;
+    }
+
+    public static GenericHttpStatus valueOf(int statusCode) {
+        for (GenericHttpStatus status : GenericHttpStatus.values()) {
+            if (status.getCode() == statusCode) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Unknown HTTP status code: " + statusCode);
+    }
+
+    @Override
+    public String toString() {
+        return this.code + " " + this.reasonPhrase;
     }
 }

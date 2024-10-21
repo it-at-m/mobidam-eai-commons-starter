@@ -22,20 +22,21 @@
  */
 package de.muenchen.mobidam.eai.integration.configuration;
 
-import de.muenchen.mobidam.eai.common.config.EnvironmentReader;
 import de.muenchen.mobidam.eai.common.config.S3BucketCredentialConfig;
 import de.muenchen.mobidam.eai.common.s3.S3CredentialProvider;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.apache.camel.component.aws2.s3.AWS2S3Component;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import software.amazon.awssdk.services.s3.S3Client;
+import org.springframework.context.annotation.Configuration;
 
-@ConditionalOnBean(S3Client.class)
+@Configuration
 public class S3CredentialProviderAutoConfiguration {
 
     @Bean
+    @ConditionalOnClass(AWS2S3Component.class)
     @ConditionalOnMissingBean
-    public S3CredentialProvider s3CredentialProvider(S3BucketCredentialConfig properties, EnvironmentReader environmentReader) {
-        return new S3CredentialProvider(properties, environmentReader);
+    public S3CredentialProvider s3CredentialProvider(S3BucketCredentialConfig properties) {
+        return new S3CredentialProvider(properties);
     }
 }

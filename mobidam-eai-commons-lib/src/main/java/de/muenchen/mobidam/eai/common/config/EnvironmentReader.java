@@ -22,17 +22,9 @@
  */
 package de.muenchen.mobidam.eai.common.config;
 
-import lombok.AllArgsConstructor;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
-
-@Component
-@AllArgsConstructor
 public class EnvironmentReader {
 
-    private Environment environment;
-
-    public String getEnvironmentVariable(final String key) {
-        return this.environment.getProperty(key);
+    public static String getEnvironmentVariable(final String key) {
+        return System.getenv().get(key);
     }
 }

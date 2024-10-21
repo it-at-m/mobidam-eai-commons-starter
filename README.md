@@ -11,7 +11,7 @@
     <img src="/images/logo.png" alt="Logo" height="200">
   </a>
 
-<h3 align="center">MobidaM - Mobilitätsdatenplattform für München - S3 EAI</i></h3>
+<h3 align="center">MobidaM - Mobilitätsdatenplattform für München</i></h3>
 
   <p align="center">
     <i>Anwendung für das Management der Schnittstellen</i>
@@ -27,8 +27,8 @@
 
 Gesamtziel des Projektes MobidaM ist die Einführung einer Mobilitätsdatenplattform zur Bereitstellung, Haltung, Visualisierung und Auswertung von Mobilitätsdaten im Kontext der Mobilitätsplanung, der Wirkungsanalyse und der Angebotssteuerung. Hierbei werden die unterschiedlichsten Daten aus verschiedenen internen oder externen Datenquellen benötigt. 
 
-Im Kontext des MobidaM Projekts implementiert der mobidam-eai-commons-starter die in verschiedenen eai Projekten benötigte S3 Bucket Authorisierung. 
-
+Im Kontext des MobidaM Projekts implementiert der mobidam-eai-commons-starter eine von verschiedenen eai Projekten benötigte S3 Bucket Authorisierung. 
+Die S3 Credentials müssen als Umgebungsvariablen defniert sein, damit der S3ConfigProvider sie über seinen S3 Bucket Namen ermitteln kann. Siehe auch [README.md](docs%2FREADME.md).
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
 ### Verwendete Technologien
@@ -39,19 +39,9 @@ Dieses Projekt verwendet die folgenden Technologien:
 
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
-## Set up
-
-siehe <a href="https://github.com/it-at-m/mobidam-s3-eai/tree/main/docs">docs</a>
-
-<p align="right">(<a href="#top">nach oben</a>)</p>
-
-
-## Dokumentation
-
-<!--*what insights do you have to tell*-->
-
-Die Dokumentation befindet sich unter <a href="https://github.com/it-at-m/mobidam-s3-eai/tree/main/docs">docs</a>
-
+## Set up / Dokumentation
+- [Mobidam S3 Dokumentation](https://github.com/it-at-m/mobidam-s3-eai/tree/main/docs)
+- [Project README.md](docs%2FREADME.md)
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
 <!-- CONTRIBUTING -->

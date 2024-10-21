@@ -23,13 +23,17 @@
 package de.muenchen.mobidam.eai.integration.configuration;
 
 import de.muenchen.mobidam.eai.common.config.S3BucketCredentialConfig;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@ConditionalOnProperty(prefix = "de.muenchen.mobidam.s3.bucket-credential-config")
+@Configuration
 public class S3BucketCredentialConfigAutoConfiguration {
 
     @Bean
+    @ConditionalOnMissingBean
+    @ConfigurationProperties(prefix = "de.muenchen.mobidam.common.s3")
     public S3BucketCredentialConfig s3BucketCredentialConfig() {
         return new S3BucketCredentialConfig();
     }

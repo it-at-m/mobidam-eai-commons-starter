@@ -24,15 +24,16 @@ package de.muenchen.mobidam.eai.common.s3;
 
 import de.muenchen.mobidam.eai.common.S3Constants;
 import de.muenchen.mobidam.eai.common.config.EnvironmentReader;
+import de.muenchen.mobidam.eai.common.config.GenericHttpStatus;
 import de.muenchen.mobidam.eai.common.config.S3BucketCredentialConfig;
 import de.muenchen.mobidam.eai.common.exception.ErrorResponseBuilder;
+import de.muenchen.mobidam.eai.common.exception.IErrorResponse;
 import de.muenchen.mobidam.eai.common.exception.MobidamException;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.tooling.model.Strings;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -41,23 +42,24 @@ import java.util.Map;
  * It takes the configured environment variables from the properties, reads their content
  * and provides them as message headers.
  */
-@Component
 @RequiredArgsConstructor
 public class S3CredentialProvider implements Processor {
 
     private static final String TENANT_CONFIG = "tenant-default";
 
+    @NonNull
     private final S3BucketCredentialConfig properties;
-    private final EnvironmentReader environmentReader;
 
     @Override
     public void process(Exchange exchange) throws Exception {
         String bucketName = verifyBucket(exchange);
         S3BucketCredentialConfig.BucketCredentialConfig credentials = verifyCredentials(bucketName, exchange);
-        String accessKey = environmentReader.getEnvironmentVariable(credentials.getAccessKeyEnvVar());
-        String secretKey = environmentReader.getEnvironmentVariable(credentials.getSecretKeyEnvVar());
+        String accessKey = EnvironmentReader.getEnvironmentVariable(credentials.getAccessKeyEnvVar());
+        String secretKey = EnvironmentReader.getEnvironmentVariable(credentials.getSecretKeyEnvVar());
         if (Strings.isNullOrEmpty(accessKey) || Strings.isNullOrEmpty(secretKey)) {
-            exchange.getMessage().setBody(ErrorResponseBuilder.build(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Bucket not configured: " + bucketName));
+            exchange.getMessage()
+                    .setBody(ErrorResponseBuilder.build(GenericHttpStatus.INTERNAL_SERVER_ERROR.getCode(), "Bucket not configured: " + bucketName,
+                            exchange.getProperty(S3Constants.ERROR_RESPONSE, IErrorResponse.class)));
             throw new MobidamException("Bucket not configured: " + bucketName);
         }
         exchange.getMessage().setHeader(S3Constants.ACCESS_KEY, accessKey);
@@ -67,21 +69,23 @@ public class S3CredentialProvider implements Processor {
     private String verifyBucket(Exchange exchange) throws MobidamException {
         String bucketName = exchange.getMessage().getHeader(S3Constants.PARAMETER_BUCKET_NAME, String.class);
         if (Strings.isNullOrEmpty(bucketName)) {
-            exchange.getMessage().setBody(ErrorResponseBuilder.build(HttpStatus.BAD_REQUEST.value(), "Bucket name is missing"));
+            exchange.getMessage().setBody(ErrorResponseBuilder.build(GenericHttpStatus.BAD_REQUEST.getCode(), "Bucket name is missing",
+                    exchange.getProperty(S3Constants.ERROR_RESPONSE, IErrorResponse.class)));
             throw new MobidamException("Bucket name is missing");
         }
         return bucketName;
     }
 
     private S3BucketCredentialConfig.BucketCredentialConfig verifyCredentials(String bucketName, Exchange exchange) throws MobidamException {
-        Map<String, S3BucketCredentialConfig.BucketCredentialConfig> map = properties.getBucketCredentialConfig();
+        Map<String, S3BucketCredentialConfig.BucketCredentialConfig> map = properties.getBucketCredentialConfigs();
         S3BucketCredentialConfig.BucketCredentialConfig envVars = map.get(bucketName);
         if (envVars == null) {
             envVars = tryTenantCredentials(map);
             if (envVars == null) {
                 exchange.getMessage()
-                        .setBody(ErrorResponseBuilder.build(HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                                "Configuration for bucket and tenant not found: " + bucketName));
+                        .setBody(ErrorResponseBuilder.build(GenericHttpStatus.INTERNAL_SERVER_ERROR.getCode(),
+                                "Configuration for bucket and tenant not found: " + bucketName,
+                                exchange.getProperty(S3Constants.ERROR_RESPONSE, IErrorResponse.class)));
                 throw new MobidamException("Configuration for bucket and tenant not found: " + bucketName);
             }
         }

@@ -22,17 +22,15 @@
  */
 package de.muenchen.mobidam.eai.common.exception;
 
-import de.muenchen.mobidam.eai.common.rest.ErrorResponse;
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class ErrorResponseBuilder {
 
-    public static ErrorResponse build(final Integer status, final String message) {
-        var res = new ErrorResponse();
-        res.setTimestamp(new Date());
-        res.setStatus(BigDecimal.valueOf(status));
-        res.setError(message);
-        return res;
+    public static IErrorResponse build(final Integer status, final String message, IErrorResponse errorResponse) {
+        errorResponse.setTimestamp(new Date());
+        errorResponse.setStatus(BigDecimal.valueOf(status));
+        errorResponse.setError(message);
+        return errorResponse;
     }
 }
