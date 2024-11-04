@@ -22,12 +22,12 @@
  */
 package de.muenchen.mobidam.eai.common;
 
-public class S3Constants {
+public class CommonConstants {
 
-    public static final String ERROR_RESPONSE = "errorResponse";
-    public static final String PARAMETER_BUCKET_NAME = "bucketName";
+    public static final String PROPERTY_ERROR_RESPONSE = "errorResponse";
+    public static final String HEADER_BUCKET_NAME = "bucketName";
 
     // Headers for bucket credentials
-    public static final String ACCESS_KEY = "accessKey";
-    public static final String SECRET_KEY = "secretKey";
+    public static final String HEADER_ACCESS_KEY = "accessKey";
+    public static final String HEADER_SECRET_KEY = "secretKey";
 }
