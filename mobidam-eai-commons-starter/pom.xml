@@ -35,17 +35,28 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>mobidam-eai-commons-starter</name>
     <description>mobidam-eai-commons-starter</description>
+    <url>https://github.com/it-at-m/mobidam-eai-commons-starter</url>
     <licenses>
-        <license/>
+        <license>
+            <name>MIT License</name>
+        </license>
     </licenses>
+    <organization>
+        <name>Landeshauptstadt München - it@M</name>
+        <url>https://muenchen.digital/it-at-m/</url>
+    </organization>
     <developers>
-        <developer/>
+        <developer>
+            <name>sfi2022</name>
+            <organization>Landeshauptstadt München</organization>
+            <url>https://github.com/sfi2022</url>
+        </developer>
     </developers>
     <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
+        <url>https://github.com/it-at-m/mobidam-eai-commons-starter</url>
+        <connection>scm:git:https://github.com/it-at-m/mobidam-eai-commons-starter.git</connection>
+        <developerConnection>scm:git:https://github.com/it-at-m/mobidam-eai-commons-starter.git</developerConnection>
+        <tag>0.0.1</tag>
     </scm>
     <properties>
         <java.version>17</java.version>
