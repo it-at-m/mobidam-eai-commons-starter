@@ -22,9 +22,9 @@
  */
 package de.muenchen.mobidam.eai.common.config;
 
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Map;
 
 /**
  * This class represents the configuration for S3 bucket credentials.
