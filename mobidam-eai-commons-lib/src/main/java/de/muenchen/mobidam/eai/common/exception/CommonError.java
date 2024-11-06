@@ -22,20 +22,22 @@
  */
 package de.muenchen.mobidam.eai.common.exception;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
-public interface IErrorResponse {
+@Getter
+@Setter
+@EqualsAndHashCode
+public class CommonError {
 
-    Date getTimestamp();
+    Date timestamp;
 
-    void setTimestamp(Date timestamp);
+    String error;
 
-    String getError();
+    BigDecimal status;
 
-    void setError(String error);
-
-    BigDecimal getStatus();
-
-    void setStatus(BigDecimal status);
 }

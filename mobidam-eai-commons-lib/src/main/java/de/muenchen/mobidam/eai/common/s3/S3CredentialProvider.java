@@ -26,7 +26,6 @@ import de.muenchen.mobidam.eai.common.CommonConstants;
 import de.muenchen.mobidam.eai.common.config.EnvironmentReader;
 import de.muenchen.mobidam.eai.common.config.S3BucketCredentialConfig;
 import de.muenchen.mobidam.eai.common.exception.ErrorResponseBuilder;
-import de.muenchen.mobidam.eai.common.exception.IErrorResponse;
 import de.muenchen.mobidam.eai.common.exception.MobidamException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -58,8 +57,7 @@ public class S3CredentialProvider implements Processor {
         String secretKey = EnvironmentReader.getEnvironmentVariable(credentials.getSecretKeyEnvVar());
         if (Strings.isNullOrEmpty(accessKey) || Strings.isNullOrEmpty(secretKey)) {
             exchange.getMessage()
-                    .setBody(ErrorResponseBuilder.build(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Bucket not configured: " + bucketName,
-                            exchange.getProperty(CommonConstants.PROPERTY_ERROR_RESPONSE, IErrorResponse.class)));
+                    .setBody(ErrorResponseBuilder.build(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Bucket not configured: " + bucketName));
             throw new MobidamException("Bucket not configured: " + bucketName);
         }
         exchange.getMessage().setHeader(CommonConstants.HEADER_ACCESS_KEY, accessKey);
@@ -69,8 +67,7 @@ public class S3CredentialProvider implements Processor {
     private String verifyBucket(Exchange exchange) throws MobidamException {
         String bucketName = exchange.getMessage().getHeader(CommonConstants.HEADER_BUCKET_NAME, String.class);
         if (Strings.isNullOrEmpty(bucketName)) {
-            exchange.getMessage().setBody(ErrorResponseBuilder.build(HttpStatus.SC_BAD_REQUEST, "Bucket name is missing",
-                    exchange.getProperty(CommonConstants.PROPERTY_ERROR_RESPONSE, IErrorResponse.class)));
+            exchange.getMessage().setBody(ErrorResponseBuilder.build(HttpStatus.SC_BAD_REQUEST, "Bucket name is missing"));
             throw new MobidamException("Bucket name is missing");
         }
         return bucketName;
@@ -84,8 +81,7 @@ public class S3CredentialProvider implements Processor {
             if (envVars == null) {
                 exchange.getMessage()
                         .setBody(ErrorResponseBuilder.build(HttpStatus.SC_INTERNAL_SERVER_ERROR,
-                                "Configuration for bucket and tenant not found: " + bucketName,
-                                exchange.getProperty(CommonConstants.PROPERTY_ERROR_RESPONSE, IErrorResponse.class)));
+                                "Configuration for bucket and tenant not found: " + bucketName));
                 throw new MobidamException("Configuration for bucket and tenant not found: " + bucketName);
             }
         }

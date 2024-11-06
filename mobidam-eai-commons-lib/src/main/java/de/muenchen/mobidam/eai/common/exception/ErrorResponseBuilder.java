@@ -27,7 +27,8 @@ import java.util.Date;
 
 public class ErrorResponseBuilder {
 
-    public static IErrorResponse build(final Integer status, final String message, IErrorResponse errorResponse) {
+    public static CommonError build(final Integer status, final String message) {
+        var errorResponse = new CommonError();
         errorResponse.setTimestamp(new Date());
         errorResponse.setStatus(BigDecimal.valueOf(status));
         errorResponse.setError(message);

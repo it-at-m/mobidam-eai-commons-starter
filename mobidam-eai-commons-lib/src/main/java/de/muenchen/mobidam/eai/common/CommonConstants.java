@@ -24,7 +24,6 @@ package de.muenchen.mobidam.eai.common;
 
 public class CommonConstants {
 
-    public static final String PROPERTY_ERROR_RESPONSE = "errorResponse";
     public static final String HEADER_BUCKET_NAME = "bucketName";
 
     // Headers for bucket credentials

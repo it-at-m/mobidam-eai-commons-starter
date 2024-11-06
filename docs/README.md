@@ -57,16 +57,15 @@ Daher ist in der _S3BucketCredentialConfigAutoConfiguration_ keine zusätzliche 
 ### S3CrentialProvider Bean einer Camel Route hinzufügen
 
 ```
-  public class ErrorResponse implements de.muenchen.mobidam.eai.common.exception.IErrorResponse {
+  public class ErrorResponse implements de.muenchen.mobidam.eai.common.exception.CommonError {
     ...
   }
 
   from("{{camel.route.common}}")
        ...
-       .setHeader(S3Constants.PARAMETER_BUCKET_NAME, "test-bucket")
-       .setProperty(S3Constants.ERROR_RESPONSE).constant(new ErrorResponse())
+       .setHeader(CommonConstants.HEADER_BUCKET_NAME, "test-bucket")
        .process("s3CredentialProvider")
-       .toD(String.format("aws2-s3://${header.%1$s}?accessKey=RAW(${header.%2$s})&secretKey=RAW(${header.%3$s})..., S3Constants.PARAMETER_BUCKET_NAME, S3Constants.ACCESS_KEY, S3Constants.SECRET_KEY, ...))
+       .toD(String.format("aws2-s3://${header.%1$s}?accessKey=RAW(${header.%2$s})&secretKey=RAW(${header.%3$s})..., CommonConstants.HEADER_BUCKET_NAME, CommonConstants.HEADER_ACCESS_KEY, CommonConstants.HEADER_SECRET_KEY, ...))
        ...
 ```
 
