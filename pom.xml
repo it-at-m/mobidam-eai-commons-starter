@@ -29,7 +29,7 @@
 
     <groupId>de.muenchen.mobidam</groupId>
     <artifactId>mobidam-eai-commons</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>mobidam-eai-commons</name>
@@ -56,10 +56,8 @@
     </developers>
 
     <scm>
-        <url>https://github.com/it-at-m/mobidam-eai-commons-starter</url>
-        <connection>scm:git:https://github.com/it-at-m/mobidam-eai-commons-starter.git</connection>
-        <developerConnection>https://github.com/it-at-m/mobidam-eai-commons-starter.git</developerConnection>
-        <tag>0.0.1</tag>
+        <connection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</connection>
+        <developerConnection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</developerConnection>
     </scm>
 
     <properties>
