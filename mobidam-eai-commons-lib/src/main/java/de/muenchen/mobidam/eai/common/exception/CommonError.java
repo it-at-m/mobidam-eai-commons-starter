@@ -33,10 +33,10 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class CommonError {
 
-    Date timestamp;
+    private Date timestamp;
 
-    String error;
+    private String error;
 
-    BigDecimal status;
+    private BigDecimal status;
 
 }

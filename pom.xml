@@ -33,7 +33,7 @@
 
     <packaging>pom</packaging>
     <name>mobidam-eai-commons</name>
-    <description>spring-boot-starter to integrate mobidam-eai-commons classes into other components</description>
+    <description>Spring Boot starter for integration into Apache Camel EAI components. The starter implements access to s3 credentials, which are provided in environment variables.</description>
     <url>https://github.com/it-at-m/mobidam-eai-commons-starter/</url>
 
     <licenses>
@@ -278,7 +278,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.3.4</version>
                 <configuration>
                     <excludes>
                         <exclude>

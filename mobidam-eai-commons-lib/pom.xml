@@ -34,12 +34,13 @@
 
     <artifactId>mobidam-eai-commons-lib</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <name>mobidam-eai-commons-lib</name>
+    <description>Contains independent, reusable code that does not require direct Spring Boot integration.</description>
 
     <properties>
         <java.version>17</java.version>
         <camel.version>4.8.0</camel.version>
         <jakarta.version>3.0.2</jakarta.version>
-        <spring.boot.version>3.3.4</spring.boot.version>
     </properties>
 
     <dependencies>
