@@ -28,7 +28,7 @@
 
     <groupId>de.muenchen.mobidam</groupId>
     <artifactId>mobidam-eai-commons</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>mobidam-eai-commons</name>
@@ -57,7 +57,7 @@
     <scm>
         <connection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</connection>
         <developerConnection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</developerConnection>
-      <tag>1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
