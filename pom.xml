@@ -68,7 +68,7 @@
 
         <maven-scm-plugin.version>1.10.0</maven-scm-plugin.version>
 
-        <spring.boot.version>3.3.4</spring.boot.version>
+        <spring.boot.version>3.3.5</spring.boot.version>
 
         <skipGpg>false</skipGpg>
     </properties>
