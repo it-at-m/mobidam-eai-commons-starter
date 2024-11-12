@@ -39,7 +39,7 @@
     <properties>
         <java.version>17</java.version>
         <camel.version>4.8.0</camel.version>
-        <jakarta.version>3.0.2</jakarta.version>
+        <jakarta.version>3.1.0</jakarta.version>
     </properties>
 
     <dependencies>
