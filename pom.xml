@@ -23,13 +23,12 @@
      THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.muenchen.mobidam</groupId>
     <artifactId>mobidam-eai-commons</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>mobidam-eai-commons</name>
@@ -56,11 +55,10 @@
     </developers>
 
     <scm>
-        <url>https://github.com/it-at-m/mobidam-eai-commons-starter</url>
-        <connection>scm:git:https://github.com/it-at-m/mobidam-eai-commons-starter.git</connection>
-        <developerConnection>https://github.com/it-at-m/mobidam-eai-commons-starter.git</developerConnection>
-        <tag>0.0.1</tag>
-    </scm>
+        <connection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</connection>
+        <developerConnection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</developerConnection>
+      <tag>HEAD</tag>
+  </scm>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -204,12 +202,12 @@
                             <include>**/src/main/java/**/*.java</include> <!-- Check application code -->
                             <include>**/src/test/java/**/*.java</include> <!-- Check application tests code -->
                         </includes>
-                        <excludes/>
+                        <excludes />
                         <eclipse>
                             <file>itm-java-codeformat/java_codestyle_formatter.xml</file>
                         </eclipse>
-                        <trimTrailingWhitespace/>
-                        <endWithNewline/>
+                        <trimTrailingWhitespace />
+                        <endWithNewline />
                     </java>
                 </configuration>
                 <executions>

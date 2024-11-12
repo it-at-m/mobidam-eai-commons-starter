@@ -6,7 +6,7 @@ on:
       branch:
         description: "Branch to release from ?"
         required: true
-        default: "main"
+        default: "sprint"
       release-version:
         description: "Release version ?"
         required: true
@@ -27,9 +27,6 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
 
-      - name: Setup git user
-        uses: fregante/setup-git-user@v2
-
       - name: Set up JDK and OSSRH auth / GPG signing
         uses: actions/setup-java@v3
         with:
@@ -41,7 +38,10 @@ jobs:
           server-password: CENTRAL_PASSWORD
           gpg-private-key: ${{ secrets.gpg_private_key }}
           gpg-passphrase: SIGN_KEY_PASS
-
+      - name: git-config
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
       - name: Perform maven release
         run: >
           mvn --batch-mode --no-transfer-progress -f ${{ github.workspace }}/pom.xml release:prepare release:perform
@@ -53,7 +53,7 @@ jobs:
           SIGN_KEY_PASS: ${{ secrets.gpg_passphrase }}
           CENTRAL_USERNAME: ${{ secrets.sonatype_username }}
           CENTRAL_PASSWORD: ${{ secrets.sonatype_password }}
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
