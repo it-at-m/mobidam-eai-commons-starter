@@ -5,9 +5,6 @@ on:
     branches-ignore:
       - 'sprint'
       - 'main'
-    paths:
-      - '${{ github.workspace }}/**'
-      - '.github/workflows/**'
   pull_request:
     types: [ opened, reopened ]
 
