@@ -27,47 +27,49 @@ import de.muenchen.mobidam.eai.common.config.EnvironmentReader;
 import de.muenchen.mobidam.eai.common.config.S3BucketCredentialConfig;
 import de.muenchen.mobidam.eai.common.exception.MobidamException;
 import de.muenchen.mobidam.eai.common.s3.S3CredentialProvider;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.support.DefaultExchange;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class S3CredentialProviderTest {
 
+    private EnvironmentReader environmentReader;
+    private S3BucketCredentialConfig properties;
     private S3CredentialProvider s3CredentialProvider;
     private final CamelContext camelContext = new DefaultCamelContext();
 
+    @BeforeEach
+    void setup() {
+        environmentReader = Mockito.mock(EnvironmentReader.class);
+        properties = Mockito.mock(S3BucketCredentialConfig.class);
+        s3CredentialProvider = new S3CredentialProvider(properties, environmentReader);
+    }
+
     @Test
     public void test_processWithValidConfiguration() throws Exception {
+        // Given
+        String bucketName = "x-itmkm82k";
+        String envVar = "FOO";
+        String value = "BAR";
 
-        try (MockedStatic<EnvironmentReader> environmentReader = Mockito.mockStatic(EnvironmentReader.class)) {
+        configureEnvironment(bucketName, envVar, value);
 
-            // Given
-            String bucketName = "x-itmkm82k";
-            String envVar = "FOO";
-            String value = "BAR";
+        Exchange exchange = new DefaultExchange(camelContext);
+        exchange.getMessage().setHeader(CommonConstants.HEADER_BUCKET_NAME, bucketName);
 
-            configureEnvironment(bucketName, envVar, value);
+        // When
+        s3CredentialProvider.process(exchange);
 
-            Exchange exchange = new DefaultExchange(camelContext);
-            exchange.getMessage().setHeader(CommonConstants.HEADER_BUCKET_NAME, bucketName);
-
-            environmentReader.when(() -> EnvironmentReader.getEnvironmentVariable(envVar)).thenReturn(value);
-
-            // When
-            s3CredentialProvider.process(exchange);
-
-            // Then
-            Assertions.assertEquals(value, exchange.getMessage().getHeader(CommonConstants.HEADER_ACCESS_KEY));
-            Assertions.assertEquals(value, exchange.getMessage().getHeader(CommonConstants.HEADER_SECRET_KEY));
-        }
+        // Then
+        Assertions.assertEquals(value, exchange.getMessage().getHeader(CommonConstants.HEADER_ACCESS_KEY));
+        Assertions.assertEquals(value, exchange.getMessage().getHeader(CommonConstants.HEADER_SECRET_KEY));
     }
 
     @Test
@@ -77,7 +79,8 @@ public class S3CredentialProviderTest {
         String envVar = "FOO";
         String value = "BAR";
 
-        configureEnvironment(bucketName, envVar, value);
+        Mockito.when(environmentReader.getEnvironmentVariable(Mockito.anyString())).thenReturn(null);
+
         Exchange exchange = new DefaultExchange(camelContext);
         exchange.getMessage().setHeader(CommonConstants.HEADER_BUCKET_NAME, bucketName);
 
@@ -96,6 +99,7 @@ public class S3CredentialProviderTest {
         String value = "BAR";
 
         configureEnvironment(bucketName, envVar, value);
+
         Exchange exchange = new DefaultExchange(camelContext);
         exchange.getMessage().setHeader(CommonConstants.HEADER_BUCKET_NAME, "invalid_bucket");
 
@@ -114,6 +118,7 @@ public class S3CredentialProviderTest {
         String value = "BAR";
 
         configureEnvironment(bucketName, envVar, value);
+
         Exchange exchange = new DefaultExchange(camelContext);
 
         // Then
@@ -124,9 +129,7 @@ public class S3CredentialProviderTest {
     }
 
     private void configureEnvironment(String bucketName, String envVar, String value) {
-        S3BucketCredentialConfig properties = Mockito.mock(S3BucketCredentialConfig.class);
-        s3CredentialProvider = new S3CredentialProvider(properties);
-
+        Mockito.when(environmentReader.getEnvironmentVariable(envVar)).thenReturn(value);
         S3BucketCredentialConfig.BucketCredentialConfig envVars = new S3BucketCredentialConfig.BucketCredentialConfig();
         envVars.setAccessKeyEnvVar(envVar);
         envVars.setSecretKeyEnvVar(envVar);

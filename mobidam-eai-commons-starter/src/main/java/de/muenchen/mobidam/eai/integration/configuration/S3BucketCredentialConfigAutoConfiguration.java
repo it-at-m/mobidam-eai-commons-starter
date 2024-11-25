@@ -22,6 +22,7 @@
  */
 package de.muenchen.mobidam.eai.integration.configuration;
 
+import de.muenchen.mobidam.eai.common.config.EnvironmentReader;
 import de.muenchen.mobidam.eai.common.config.S3BucketCredentialConfig;
 import de.muenchen.mobidam.eai.common.s3.S3CredentialProvider;
 import org.apache.camel.component.aws2.s3.AWS2S3Component;
@@ -42,9 +43,15 @@ public class S3BucketCredentialConfigAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnMissingBean
+    public EnvironmentReader environmentReader() {
+        return new EnvironmentReader();
+    }
+
+    @Bean
     @ConditionalOnClass(AWS2S3Component.class)
     @ConditionalOnMissingBean
-    public S3CredentialProvider s3CredentialProvider(S3BucketCredentialConfig properties) {
-        return new S3CredentialProvider(properties);
+    public S3CredentialProvider s3CredentialProvider(S3BucketCredentialConfig properties, EnvironmentReader environmentReader) {
+        return new S3CredentialProvider(properties, environmentReader);
     }
 }

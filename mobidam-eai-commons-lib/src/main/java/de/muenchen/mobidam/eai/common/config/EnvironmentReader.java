@@ -22,9 +22,12 @@
  */
 package de.muenchen.mobidam.eai.common.config;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class EnvironmentReader {
 
-    public static String getEnvironmentVariable(final String key) {
+    public String getEnvironmentVariable(final String key) {
         return System.getenv().get(key);
     }
 }

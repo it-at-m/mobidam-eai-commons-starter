@@ -34,12 +34,14 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.tooling.model.Strings;
 import org.apache.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
 /**
  * This class provides the credentials for S3 buckets.
  * It takes the configured environment variables from the properties, reads their content
  * and provides them as message headers.
  */
+@Component
 @RequiredArgsConstructor
 public class S3CredentialProvider implements Processor {
 
@@ -47,13 +49,14 @@ public class S3CredentialProvider implements Processor {
 
     @NonNull
     private final S3BucketCredentialConfig properties;
+    private final EnvironmentReader environmentReader;
 
     @Override
     public void process(Exchange exchange) throws Exception {
         String bucketName = verifyBucket(exchange);
         S3BucketCredentialConfig.BucketCredentialConfig credentials = verifyCredentials(bucketName, exchange);
-        String accessKey = EnvironmentReader.getEnvironmentVariable(credentials.getAccessKeyEnvVar());
-        String secretKey = EnvironmentReader.getEnvironmentVariable(credentials.getSecretKeyEnvVar());
+        String accessKey = environmentReader.getEnvironmentVariable(credentials.getAccessKeyEnvVar());
+        String secretKey = environmentReader.getEnvironmentVariable(credentials.getSecretKeyEnvVar());
         if (Strings.isNullOrEmpty(accessKey) || Strings.isNullOrEmpty(secretKey)) {
             exchange.getMessage()
                     .setBody(ErrorResponseBuilder.build(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Bucket not configured: " + bucketName));
