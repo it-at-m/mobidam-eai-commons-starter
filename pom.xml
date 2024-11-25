@@ -60,7 +60,8 @@
         <connection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</connection>
         <developerConnection>scm:git:${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git</developerConnection>
         <tag>head</tag>
-    </scm>
+  </scm>
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
