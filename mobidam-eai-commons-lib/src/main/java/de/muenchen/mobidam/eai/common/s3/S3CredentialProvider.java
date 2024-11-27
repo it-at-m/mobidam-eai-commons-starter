@@ -34,14 +34,12 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.tooling.model.Strings;
 import org.apache.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 /**
  * This class provides the credentials for S3 buckets.
  * It takes the configured environment variables from the properties, reads their content
  * and provides them as message headers.
  */
-@Component
 @RequiredArgsConstructor
 public class S3CredentialProvider implements Processor {
 
