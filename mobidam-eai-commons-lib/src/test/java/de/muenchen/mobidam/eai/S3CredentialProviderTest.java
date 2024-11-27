@@ -41,15 +41,15 @@ import org.mockito.Mockito;
 public class S3CredentialProviderTest {
 
     private EnvironmentReader environmentReader;
-    private S3BucketCredentialConfig properties;
+    private S3BucketCredentialConfig s3CredentialProperties;
     private S3CredentialProvider s3CredentialProvider;
     private final CamelContext camelContext = new DefaultCamelContext();
 
     @BeforeEach
     void setup() {
         environmentReader = Mockito.mock(EnvironmentReader.class);
-        properties = Mockito.mock(S3BucketCredentialConfig.class);
-        s3CredentialProvider = new S3CredentialProvider(properties, environmentReader);
+        s3CredentialProperties = Mockito.mock(S3BucketCredentialConfig.class);
+        s3CredentialProvider = new S3CredentialProvider(s3CredentialProperties, environmentReader);
     }
 
     @Test
@@ -135,6 +135,6 @@ public class S3CredentialProviderTest {
         envVars.setSecretKeyEnvVar(envVar);
         Map<String, S3BucketCredentialConfig.BucketCredentialConfig> map = new HashMap<>();
         map.put(bucketName, envVars);
-        Mockito.when(properties.getBucketCredentialConfigs()).thenReturn(map);
+        Mockito.when(s3CredentialProperties.getBucketCredentialConfigs()).thenReturn(map);
     }
 }

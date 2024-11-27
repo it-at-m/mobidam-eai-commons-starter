@@ -1,5 +1,5 @@
 # Release-Notes
-## Sprint 20 (12.11.2024 - 03.13.2024)
+## Sprint 20 (12.11.2024 - 03.12.2024)
 - Maven groupid an LHM Standard angepasst.
 - S3CredentialProvider und EnvironmentReader als Bean.
 
