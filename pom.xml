@@ -28,11 +28,11 @@
 
     <groupId>de.muenchen.oss.mobidam</groupId>
     <artifactId>mobidam-eai-commons</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>mobidam-eai-commons</name>
-    <description>Spring Boot starter for integration into Apache Camel EAI components. The starter implements access to s3 credentials, which are provided in environment variables.</description>
+    <description>Spring Boot starter for integration into Apache Camel EAI components. (1) The starter implements access to s3 credentials, which are provided in environment variables. (2) The starter implements a quartz controlled triggering of a camel route execution depending on existing interface definitions.</description>
     <url>https://github.com/it-at-m/mobidam-eai-commons-starter/</url>
 
     <licenses>

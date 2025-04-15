@@ -20,16 +20,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.muenchen.mobidam.eai.common;
+package de.muenchen.mobidam.config;
 
-public class CommonConstants {
+import java.util.List;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-    public static final String HEADER_BUCKET_NAME = "bucketName";
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Getter
+public class InterfaceDTO {
 
-    // Headers for bucket credentials
-    public static final String HEADER_ACCESS_KEY = "accessKey";
-    public static final String HEADER_SECRET_KEY = "secretKey";
-
-    public static final String INTERFACE_TYPE = "APP_INTERFACE_TYPE";
+    private UUID mobidamSstId;
+    private String name;
+    private String identifier;
+    private String url;
+    private String cronExpression;
+    private String s3ObjectPath;
+    private String s3DateFormat;
+    private String s3Bucket;
+    private List<String> allowedResourceTypes;
+    private Boolean maliciousCodeDetectionEnabled;
 
 }

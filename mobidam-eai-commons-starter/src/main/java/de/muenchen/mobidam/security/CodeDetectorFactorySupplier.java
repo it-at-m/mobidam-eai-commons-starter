@@ -20,16 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.muenchen.mobidam.eai.common;
+package de.muenchen.mobidam.security;
 
-public class CommonConstants {
-
-    public static final String HEADER_BUCKET_NAME = "bucketName";
-
-    // Headers for bucket credentials
-    public static final String HEADER_ACCESS_KEY = "accessKey";
-    public static final String HEADER_SECRET_KEY = "secretKey";
-
-    public static final String INTERFACE_TYPE = "APP_INTERFACE_TYPE";
-
+public interface CodeDetectorFactorySupplier {
+    MaliciousCodeDetector getCodeDetector(String mimeType);
 }

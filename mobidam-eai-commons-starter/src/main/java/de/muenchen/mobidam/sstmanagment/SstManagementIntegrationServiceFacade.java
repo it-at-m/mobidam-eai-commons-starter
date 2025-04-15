@@ -20,16 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.muenchen.mobidam.eai.common;
+package de.muenchen.mobidam.sstmanagment;
 
-public class CommonConstants {
+import de.muenchen.mobidam.config.InterfaceDTO;
+import de.muenchen.mobidam.eai.common.CommonConstants;
+import de.muenchen.mobidam.integration.client.domain.DatentransferCreateDTO;
+import de.muenchen.mobidam.integration.service.SstManagementIntegrationService;
+import lombok.AllArgsConstructor;
+import org.apache.camel.Exchange;
+import org.springframework.stereotype.Component;
 
-    public static final String HEADER_BUCKET_NAME = "bucketName";
+@AllArgsConstructor
+@Component
+public class SstManagementIntegrationServiceFacade {
 
-    // Headers for bucket credentials
-    public static final String HEADER_ACCESS_KEY = "accessKey";
-    public static final String HEADER_SECRET_KEY = "secretKey";
+    private SstManagementIntegrationService service;
 
-    public static final String INTERFACE_TYPE = "APP_INTERFACE_TYPE";
+    public void isActivated(Exchange exchange) throws Exception {
+        var mdlInterface = exchange.getIn().getHeader(CommonConstants.INTERFACE_TYPE, InterfaceDTO.class);
+        exchange.getIn().setBody(service.isActivated(mdlInterface.getMobidamSstId().toString()));
+    }
+
+    public void logDatentransfer(Exchange exchange) throws Exception {
+        service.logDatentransfer(exchange.getIn().getBody(DatentransferCreateDTO.class));
+    }
 
 }

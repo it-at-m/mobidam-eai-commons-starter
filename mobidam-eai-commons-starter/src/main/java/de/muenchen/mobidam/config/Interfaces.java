@@ -20,16 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.muenchen.mobidam.eai.common;
+package de.muenchen.mobidam.config;
 
-public class CommonConstants {
+import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-    public static final String HEADER_BUCKET_NAME = "bucketName";
+@Component
+@ConfigurationProperties(prefix = "de.muenchen.mobidam.integration")
+@Getter
+@Setter
+public class Interfaces {
 
-    // Headers for bucket credentials
-    public static final String HEADER_ACCESS_KEY = "accessKey";
-    public static final String HEADER_SECRET_KEY = "secretKey";
-
-    public static final String INTERFACE_TYPE = "APP_INTERFACE_TYPE";
+    private Map<String, InterfaceDTO> interfaces;
 
 }
