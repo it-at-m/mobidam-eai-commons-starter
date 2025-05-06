@@ -22,32 +22,16 @@
  */
 package de.muenchen.mobidam.config;
 
-import java.util.List;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Getter
-public class InterfaceDTO {
+public class InterfaceCredentialsDTO {
 
-    private UUID mobidamSstId;
-    private String name;
-    private String identifier;
+    private String userId;
+    private String password;
     private String url;
-    private String cronExpression;
-    private Integer downloadMaxMb;
-    private List<String> mobilityDataSpecificationTypes;
-    private String s3ObjectPath;
-    private String s3DateFormat;
-    private String s3Bucket;
-    private List<String> allowedResourceTypes;
-    private Boolean maliciousCodeDetectionEnabled;
-    private InterfaceCredentialsDTO credentials;
-    private Integer zoneId;
-
 }

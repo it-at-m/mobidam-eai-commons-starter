@@ -25,6 +25,7 @@ package de.muenchen.mobidam.scheduler;
 import de.muenchen.mobidam.config.InterfaceDTO;
 import de.muenchen.mobidam.config.Interfaces;
 import de.muenchen.mobidam.eai.common.CommonConstants;
+import java.io.IOException;
 import java.util.Optional;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -44,9 +45,9 @@ public class InterfaceJobExecute implements Job {
     @Value("${de.muenchen.mobidam.integration.job-execute-route:endpointUriNotFound}")
     private String endpointUri;
 
-    private CamelContext camelContext;
+    private final CamelContext camelContext;
 
-    private Interfaces interfaces;
+    private final Interfaces interfaces;
 
     public InterfaceJobExecute(CamelContext camelContext, Interfaces interfaces) {
         this.camelContext = camelContext;
@@ -65,8 +66,11 @@ public class InterfaceJobExecute implements Job {
             var exchange = ExchangeBuilder.anExchange(getCamelContext())
                     .withHeader(CommonConstants.INTERFACE_TYPE, getInterfaces().getInterfaces().get(identifier))
                     .build();
-            var producer = getCamelContext().createProducerTemplate();
-            producer.send(endpointUri, exchange);
+            try (var producer = getCamelContext().createProducerTemplate()) {
+                producer.send(endpointUri, exchange);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }
