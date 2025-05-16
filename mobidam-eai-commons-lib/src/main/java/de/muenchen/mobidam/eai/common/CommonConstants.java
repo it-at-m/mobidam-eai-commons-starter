@@ -30,6 +30,4 @@ public class CommonConstants {
     public static final String HEADER_ACCESS_KEY = "accessKey";
     public static final String HEADER_SECRET_KEY = "secretKey";
 
-    public static final String INTERFACE_TYPE = "APP_INTERFACE_TYPE";
-
 }
