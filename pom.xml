@@ -70,7 +70,7 @@
 
         <maven-scm-plugin.version>1.10.0</maven-scm-plugin.version>
 
-        <spring.boot.version>3.3.4</spring.boot.version>
+        <spring.boot.version>3.5.16</spring.boot.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
